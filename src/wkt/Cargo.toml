@@ -14,7 +14,7 @@
 
 [package]
 name                 = "gcp-sdk-wkt"
-version              = "0.1.0"
+version              = "0.1.1"
 description          = "Google Cloud SDK for Rust - Well Known Types"
 edition.workspace    = true
 authors.workspace    = true
@@ -38,4 +38,4 @@ bytes      = { version = "1.8.0", features = ["serde"] }
 test-case  = "3.3.1"
 bytes      = { version = "1.8.0", features = ["serde"] }
 serde_with = { version = "3.11.0", features = ["base64"] }
-wkt        = { path = ".", package = "gcp-sdk-wkt", features = ["time"] }
+wkt        = { version = "0.1.1", path = ".", package = "gcp-sdk-wkt", features = ["time"] }

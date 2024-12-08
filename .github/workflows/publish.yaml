@@ -15,11 +15,11 @@
 name: Publish Rust SDK
 on: [push, pull_request]
 jobs:
-  google-cloud-auth:
+  packages:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        rust-version: ['1.83']
+        packages: ['auth', 'wkt', 'gax']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -28,10 +28,10 @@ jobs:
             ~/.cargo
           key: ${{ github.job }}-${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
       - name: Setup Rust ${{ matrix.rust-version }}
-        run: rustup toolchain install ${{ matrix.rust-version }}
+        run: rustup toolchain install 1.83
       - name: Display Cargo version
         run: cargo version
       - name: Display rustc version
         run: rustc --version
       - name: Dry-run cargo publish
-        run: cargo publish --dry-run -p google-cloud-auth
+        run: cargo publish --dry-run -p gcp-sdk-${{ matrix.packages }}
